@@ -78,7 +78,7 @@ module PatchYAML
           end.sum
         end
 
-        @data = @data[...start_at].concat(@data[end_at...])
+        @data = @data[...start_at].concat(@data[end_at...] || "")
       else
         raise Error, "patchyaml: BUG: cannot delete object from #{parent.class}"
       end
