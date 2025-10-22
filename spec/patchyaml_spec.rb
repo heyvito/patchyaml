@@ -20,6 +20,9 @@ RSpec.describe PatchYAML do
       f: [1, 2, 3, 4, hello]
       g: {}
       h: []
+      i: &j
+        name: foo
+        tag: 0.0.1
     YAML
   end
   let(:editor) { PatchYAML.load(value) }
@@ -44,6 +47,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -66,6 +72,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -78,6 +87,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -100,6 +112,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -121,6 +136,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -144,6 +162,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -167,6 +188,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
   end
@@ -193,6 +217,9 @@ RSpec.describe PatchYAML do
           f: [1, 2, 3, 4, hello]
           g: {}
           h: []
+          i: &j
+            name: foo
+            tag: 0.0.1
         YAML
       end
 
@@ -216,6 +243,9 @@ RSpec.describe PatchYAML do
           f: [1, 2, 3, 4, hello]
           g: {}
           h: []
+          i: &j
+            name: foo
+            tag: 0.0.1
         YAML
       end
 
@@ -239,6 +269,9 @@ RSpec.describe PatchYAML do
           f: [1, 2, 3, 4, hello]
           g: {}
           h: []
+          i: &j
+            name: foo
+            tag: 0.0.1
         YAML
       end
 
@@ -262,6 +295,9 @@ RSpec.describe PatchYAML do
           f: [1, 2, 3, 4, hello]
           g: {}
           h: []
+          i: &j
+            name: foo
+            tag: 0.0.1
         YAML
       end
 
@@ -287,6 +323,9 @@ RSpec.describe PatchYAML do
           f: [1, 2, 3, 4, hello]
           g: {}
           h: []
+          i: &j
+            name: foo
+            tag: 0.0.1
         YAML
       end
     end
@@ -312,6 +351,9 @@ RSpec.describe PatchYAML do
           f: [1, 0, 3, 4, hello]
           g: {}
           h: []
+          i: &j
+            name: foo
+            tag: 0.0.1
         YAML
       end
 
@@ -335,6 +377,9 @@ RSpec.describe PatchYAML do
           f: [1, 2, 3, 4, hello]
           g: {}
           h: []
+          i: &j
+            name: foo
+            tag: 0.0.1
         YAML
       end
 
@@ -358,6 +403,9 @@ RSpec.describe PatchYAML do
           f: [1, false, 3, 4, hello]
           g: {}
           h: []
+          i: &j
+            name: foo
+            tag: 0.0.1
         YAML
       end
 
@@ -391,6 +439,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -414,6 +465,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
   end
@@ -440,6 +494,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -466,6 +523,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -493,6 +553,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -516,6 +579,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -539,6 +605,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: { d: 4 }
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -570,6 +639,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -594,6 +666,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -619,6 +694,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -644,6 +722,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -667,6 +748,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -690,6 +774,9 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: []
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
     end
 
@@ -718,7 +805,44 @@ RSpec.describe PatchYAML do
         f: [1, 2, 3, 4, hello]
         g: {}
         h: [ 1 ]
+        i: &j
+          name: foo
+          tag: 0.0.1
       YAML
+    end
+
+    it "parses data with anchors" do
+      editor.seq_add("h", 1)
+      expect(editor.yaml).to eq(<<~YAML)
+        mapping:
+          a:
+            sequence:
+              - name: a
+              - name: b
+              - name: c
+              - name: d
+                otherValue: hello
+          b: foo
+          c: true
+          d: [1, 2, 3, 4, foo, bar, hello]
+        d: 1
+        empty:
+        e: { a: 1, b: 2, c: 3 }
+        f: [1, 2, 3, 4, hello]
+        g: {}
+        h: [ 1 ]
+        i: &j
+          name: foo
+          tag: 0.0.1
+      YAML
+    end
+  end
+
+  context "exist?" do
+    it "determines whether a path exist" do
+      expect(editor.exist?("mapping.a.sequence.[name='b']")).to eq true
+      expect(editor.exist?("mapping.a.sequence.[name='z']")).to eq false
+      expect(editor.exist?("mapping.a.bla.[name='y'].x")).to eq false
     end
   end
 end

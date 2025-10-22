@@ -9,6 +9,16 @@ module PatchYAML
       reload(data)
     end
 
+    # Determines whether a given path exists in the loaded YAML
+    #
+    # path - Path to be checked
+    #
+    # Returns true if the path exists, false otherwise.
+    def exist?(path)
+      value, parent = find(@stream, path)
+      !value.nil?
+    end
+
     # Deletes a given path from the yaml
     #
     # path - The path to the key to be deleted

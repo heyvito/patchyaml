@@ -8,7 +8,7 @@ module PatchYAML
       node = [from, nil]
       path.each do |part|
         node = find_node(node, part)
-        return [] if node.empty?
+        return [] if node.nil? || node.empty?
       end
       node
     end
@@ -28,6 +28,8 @@ module PatchYAML
           raise "patchyaml: Unknown anchor #{from.anchor} defined by #{from.first}" unless node
 
           [find_node(node, part), node]
+        when NilClass
+          return []
         else
           raise "patchyaml: Unexpected node #{from.first.class} in #find_node"
         end
@@ -46,7 +48,7 @@ module PatchYAML
           v = from
             .first
             .children
-            .find { it.is_a?(Psych::Nodes::Mapping) && find_mapping_key(it, part[:key]).value == part[:value] }
+            .find { it.is_a?(Psych::Nodes::Mapping) && find_mapping_key(it, part[:key]).first.value == part[:value] }
           [v, from]
         end
       end
