@@ -111,10 +111,15 @@ module PatchYAML
       key = parent.children[key_index]
       start_at = start_offset(value)
       end_at = end_offset(value)
+      end_at -= 1 if @data[end_at - 1] == "\n"
       yaml_value = dump_yaml(new_value, indent: key.start_column + 2)
-      indent = if new_value.is_a?(Hash) || (new_value.is_a?(Array) && parent.style != Psych::Nodes::Mapping::FLOW)
+      indent = case
+      when new_value.is_a?(Hash)
         start_at -= 1 while @data[start_at - 1] == " "
         "\n#{" " * (key.start_column + 2)}"
+      when (new_value.is_a?(Array) && parent.style != Psych::Nodes::Mapping::FLOW)
+        start_at -= 1 while @data[start_at - 1] == " "
+        "#{" " * (key.start_column + 2)}"
       else
         ""
       end
