@@ -104,6 +104,22 @@ module PatchYAML
       end
     end
 
+    def detect_stripped_whitespace(from)
+      stripped = []
+      loop do
+        case @data[from]
+        when " ", "\t"
+          stripped << @data[from]
+          from -= 1
+        when "\n"
+          stripped << "\n"
+          return stripped.reverse.join
+        else
+          return ""
+        end
+      end
+    end
+
     # TODO: update_* does not take into consideration adding a complex, multiline
     # value into an inline parent. This will certainly break things.
     def update_mapping(value, parent, new_value)
@@ -111,21 +127,32 @@ module PatchYAML
       key = parent.children[key_index]
       start_at = start_offset(value)
       end_at = end_offset(value)
-      end_at -= 1 if @data[end_at - 1] == "\n"
       yaml_value = dump_yaml(new_value, indent: key.start_column + 2)
+      start_at -= 1 while @data[start_at - 1] == " "
+
+      # Psych assumes trailing whitespaces belong to the current value,
+      # which may cause newlines to be stripped when replacing a whole
+      # block. Here we detect how much was removed, so we can re-add it
+      # later when reassembling the file.
+      stripped = detect_stripped_whitespace(end_at - 1)
+      #rubocop:disable Lint/DuplicateBranch
       indent = case
       when new_value.is_a?(Hash)
-        start_at -= 1 while @data[start_at - 1] == " "
+        "\n#{" " * (key.start_column + 2)}"
+      when new_value.is_a?(Array) && value.style == Psych::Nodes::Sequence::FLOW && value.children.empty?
         "\n#{" " * (key.start_column + 2)}"
       when (new_value.is_a?(Array) && parent.style != Psych::Nodes::Mapping::FLOW)
-        start_at -= 1 while @data[start_at - 1] == " "
         "#{" " * (key.start_column + 2)}"
+      when new_value.is_a?(String)
+        " "
       else
-        ""
+        "#{" " * (key.start_column + 2)}"
       end
+      #rubocop:enable Lint/DuplicateBranch
       @data = @data[...start_at]
         .concat(indent)
         .concat(yaml_value)
+        .concat(stripped)
         .concat(@data[end_at...])
     end
 
