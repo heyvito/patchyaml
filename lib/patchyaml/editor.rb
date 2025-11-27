@@ -73,7 +73,7 @@ module PatchYAML
     private
 
     def reload(data)
-      @data = data
+      @data = data.end_with?("\n") ? data : data.concat("\n")
       @line_sizes = [0] + data.split("\n").map { it.length + 1 }
       begin
         @stream = Psych.parse_stream(data)
