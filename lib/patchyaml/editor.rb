@@ -15,7 +15,7 @@ module PatchYAML
     #
     # Returns true if the path exists, false otherwise.
     def exist?(path)
-      value, parent = find(@stream, path)
+      value, = find(@stream, path)
       !value.nil?
     end
 

@@ -29,7 +29,7 @@ module PatchYAML
 
           [find_node(node, part), node]
         when NilClass
-          return []
+          []
         else
           raise "patchyaml: Unexpected node #{from.first.class} in #find_node"
         end

@@ -135,20 +135,20 @@ module PatchYAML
       # block. Here we detect how much was removed, so we can re-add it
       # later when reassembling the file.
       stripped = detect_stripped_whitespace(end_at - 1)
-      #rubocop:disable Lint/DuplicateBranch
+      # rubocop:disable Lint/DuplicateBranch
       indent = case
       when new_value.is_a?(Hash)
         "\n#{" " * (key.start_column + 2)}"
       when new_value.is_a?(Array) && value.style == Psych::Nodes::Sequence::FLOW && value.children.empty?
         "\n#{" " * (key.start_column + 2)}"
-      when (new_value.is_a?(Array) && parent.style != Psych::Nodes::Mapping::FLOW)
-        "#{" " * (key.start_column + 2)}"
+      when new_value.is_a?(Array) && parent.style != Psych::Nodes::Mapping::FLOW
+        (" " * (key.start_column + 2)).to_s
       when new_value.is_a?(String)
         " "
       else
-        "#{" " * (key.start_column + 2)}"
+        (" " * (key.start_column + 2)).to_s
       end
-      #rubocop:enable Lint/DuplicateBranch
+      # rubocop:enable Lint/DuplicateBranch
       @data = @data[...start_at]
         .concat(indent)
         .concat(yaml_value)
