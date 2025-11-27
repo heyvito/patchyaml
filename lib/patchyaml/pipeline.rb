@@ -135,6 +135,7 @@ module PatchYAML
       # block. Here we detect how much was removed, so we can re-add it
       # later when reassembling the file.
       stripped = detect_stripped_whitespace(end_at - 1)
+
       # rubocop:disable Lint/DuplicateBranch
       indent = case
       when new_value.is_a?(Hash)
@@ -149,6 +150,7 @@ module PatchYAML
         (" " * (key.start_column + 2)).to_s
       end
       # rubocop:enable Lint/DuplicateBranch
+
       @data = @data[...start_at]
         .concat(indent)
         .concat(yaml_value)
